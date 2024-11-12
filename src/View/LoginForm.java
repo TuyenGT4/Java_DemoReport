@@ -76,7 +76,7 @@ public class LoginForm extends JFrame {
 		contentPane.add(tfEmail);
 		tfEmail.setColumns(10);
 		
-		//thêm placeholder		
+/*		//thêm placeholder		
 		tfEmail.addFocusListener(new FocusListener() {
 		    @Override
 		    public void focusGained(FocusEvent e) {
@@ -95,13 +95,13 @@ public class LoginForm extends JFrame {
 		    }
 		});
 		
-			
+*/			
 		tfMatKhau = new JPasswordField();
 		tfMatKhau.setBounds(43, 177, 200, 30);
 		tfMatKhau.setText("Nhập mật khẩu");
 		contentPane.add(tfMatKhau);
 		tfMatKhau.setColumns(10);
-		
+/*		
 		//set placeholder
 		tfMatKhau.addFocusListener(new FocusListener() {
             @Override
@@ -122,13 +122,13 @@ public class LoginForm extends JFrame {
                 }
             }
         });
-		
+*/		
 		
 		cbHienThiMatKhau = new JCheckBox("Hiển thị mật khẩu");
 		cbHienThiMatKhau.setFont(new Font("Times New Roman", Font.PLAIN, 9));
 		cbHienThiMatKhau.setBounds(43, 214, 142, 23);
 		contentPane.add(cbHienThiMatKhau);
-		
+/*		
 		cbHienThiMatKhau.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (cbHienThiMatKhau.isSelected()) {
@@ -142,7 +142,7 @@ public class LoginForm extends JFrame {
                 }
             }
         });
-		
+*/		
 		btnDangNhap = new JButton("Đăng nhập");
 		btnDangNhap.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		btnDangNhap.setBounds(96, 254, 89, 23);
@@ -160,7 +160,7 @@ public class LoginForm extends JFrame {
 		lblDangKy.setBounds(168, 337, 49, 14);
 		lblDangKy.setForeground(color);
 		contentPane.add(lblDangKy);
-		
+/*		
         lblDangKy.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -175,11 +175,29 @@ public class LoginForm extends JFrame {
             	}
             }
         });
-		
+*/		
 		lblQuenMatKhau = new JLabel("Quên mật khẩu?");
 		lblQuenMatKhau.setFont(new Font("Times New Roman", Font.PLAIN, 11));
 		lblQuenMatKhau.setBounds(96, 312, 87, 14);
 		lblQuenMatKhau.setForeground(color);
 		contentPane.add(lblQuenMatKhau);
+	}
+	public JTextField gettfEmail() {
+		return this.tfEmail;
+	}
+	public JPasswordField gettfMatKhau() {
+		return this.tfMatKhau;
+	}
+	public JCheckBox getcbHienThiMatKhau() {
+		return this.cbHienThiMatKhau;
+	}
+	public JButton getbtnDangNhap() {
+		return this.btnDangNhap;
+	}
+	public JLabel getlblDangKy() {
+		return this.lblDangKy;
+	}
+	public JLabel getlblQuenMatKhau() {
+		return this.getlblQuenMatKhau();
 	}
 }

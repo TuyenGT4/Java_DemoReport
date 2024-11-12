@@ -43,12 +43,18 @@ public class ForgotPasswordForm extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JLabel lblQuenMatKhau = new JLabel("Quên mật khẩu");
+		lblQuenMatKhau.setBounds(90, 10, 121, 24);
 		lblQuenMatKhau.setHorizontalAlignment(SwingConstants.CENTER);
 		lblQuenMatKhau.setForeground(new Color(61, 187, 164));
 		lblQuenMatKhau.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		contentPane.add(lblQuenMatKhau);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 204, 170, 33);
+		contentPane.add(panel);
 		
 		
 	}

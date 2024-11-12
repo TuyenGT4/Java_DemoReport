@@ -1,5 +1,5 @@
 package View;
 
-public class ManagementPage extends GenerationForm {
-
+public class ManagementPage extends GeneralForm {
+	
 }

@@ -9,6 +9,8 @@ import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+
 import java.awt.GridBagLayout;
 import javax.swing.JMenuBar;
 import java.awt.Color;
@@ -23,17 +25,17 @@ import javax.swing.JCheckBox;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
 
-public class GenerationForm extends JFrame {
+public class GeneralForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel plMenu, plVachNgan1, plVachNgan2, plVachNgan3;
 	private JButton btnNewButton, btnNewButton_1, btnNewButton_1_1, btnNewButton_1_1_1;
 	private JButton selectedButton = null;
-	private boolean isButtonSelected = false;
-	boolean isPanelVisible = false;
-	private JPanel plMain;
-	private JPanel plAboveMain;
+	private boolean isButtonSelected = false, isPanelVisible = false;
+	private JPanel plMain, plAboveMain;
+	private JLabel lblUserName, lblAvata;
 	/**
 	 * Launch the application.
 	 */
@@ -41,7 +43,7 @@ public class GenerationForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GenerationForm frame = new GenerationForm();
+					GeneralForm frame = new GeneralForm();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +55,7 @@ public class GenerationForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GenerationForm() {
+	public GeneralForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800 ,600);
 		setLocationRelativeTo(null);
@@ -67,6 +69,7 @@ public class GenerationForm extends JFrame {
 		 btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnNewButton.setBackground(new Color(61, 187, 164));
 		btnNewButton.setBorder(null);
+	
 		
 		// Thêm MouseListener để đổi màu khi di chuột và khi nút được chọn
 		btnNewButton.addMouseListener(new MouseAdapter() {
@@ -113,6 +116,7 @@ public class GenerationForm extends JFrame {
 		 btnNewButton_1.setForeground(Color.WHITE);
 		 btnNewButton_1.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		btnNewButton_1.setBackground(new Color(61, 187, 164));
+		//btnNewButton_1.setIcon(new ImageIcon("D:\\Java github\\Login\\pic\\arrow.png"));
 		btnNewButton_1.setBorder(null);
 		// Thêm MouseListener để đổi màu khi di chuột, nếu nút chưa được chọn
 				btnNewButton_1.addMouseListener(new MouseAdapter() {
@@ -345,15 +349,32 @@ public class GenerationForm extends JFrame {
 					.addComponent(plAboveMain, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(493, Short.MAX_VALUE))
 		);
+		
+		JPanel plUser = new JPanel();
 		GroupLayout gl_plAboveMain = new GroupLayout(plAboveMain);
 		gl_plAboveMain.setHorizontalGroup(
 			gl_plAboveMain.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 598, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_plAboveMain.createSequentialGroup()
+					.addContainerGap(464, Short.MAX_VALUE)
+					.addComponent(plUser, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_plAboveMain.setVerticalGroup(
 			gl_plAboveMain.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 59, Short.MAX_VALUE)
+				.addComponent(plUser, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
 		);
+		plUser.setLayout(null);
+		
+		lblUserName = new JLabel("UserName");
+		lblUserName.setFont(new Font("Times New Roman", Font.PLAIN, 11));
+		lblUserName.setBounds(60, 25, 49, 14);
+		plUser.add(lblUserName);
+		
+		lblAvata = new JLabel(new ImageIcon("D:\\Java github\\Login\\pic\\avata.jpg"));
+		lblAvata.setBounds(10, 25, 49, 14);
+		plUser.add(lblAvata);
+		
+		
 		plAboveMain.setLayout(gl_plAboveMain);
 		plMain.setLayout(gl_plMain);
 		getContentPane().setLayout(groupLayout);
