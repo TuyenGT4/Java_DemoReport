@@ -38,49 +38,68 @@ public class RegisterController {
                 }
             }
         });
-		
-		//dat placeholder "Nhập mật khẩu"
+		// Xử lý placeholder cho tfMatKhau1
 		register.gettfMatKhau1().addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent e) {
-                if (register.gettfMatKhau1().getText().equals("Nhập mật khẩu")) {
-                	register.gettfMatKhau1().setText("");
-                	register.gettfMatKhau1().setForeground(Color.BLACK);
-                }
-            }
+	            @Override
+	            public void focusGained(FocusEvent e) {
+	                if (new String(register.gettfMatKhau1().getPassword()).equals("Nhập mật khẩu")) {
+	                    register.gettfMatKhau1().setText("");
+	                    register.gettfMatKhau1().setForeground(Color.BLACK);
+	                    register.gettfMatKhau1().setEchoChar('*'); // Bật chế độ ẩn mật khẩu
+	                }
+	            }
 
-            public void focusLost(FocusEvent e) {
-                if (register.gettfMatKhau1().getText().isEmpty()) {
-                	register.gettfMatKhau1().setForeground(Color.GRAY);
-                	register.gettfMatKhau1().setText("Nhập mật khẩu");
+	            @Override
+	            public void focusLost(FocusEvent e) {
+	                if (register.gettfMatKhau1().getPassword().length == 0) {
+	                    register.gettfMatKhau1().setForeground(Color.GRAY);
+	                    register.gettfMatKhau1().setText("Nhập mật khẩu");
+	                    register.gettfMatKhau1().setEchoChar((char) 0); // Tắt chế độ ẩn mật khẩu
+	                }
+	            }
+        });
+
+        // Xử lý placeholder cho tfMatKhau2
+        register.gettfMatKhau2().addFocusListener(new FocusListener() {
+	            @Override
+	            public void focusGained(FocusEvent e) {
+	                if (new String(register.gettfMatKhau2().getPassword()).equals("Nhập lại mật khẩu")) {
+	                    register.gettfMatKhau2().setText("");
+	                    register.gettfMatKhau2().setForeground(Color.BLACK);
+	                    register.gettfMatKhau2().setEchoChar('*'); // Bật chế độ ẩn mật khẩu
+	                }
+	            }
+
+	            @Override
+	            public void focusLost(FocusEvent e) {
+	                if (register.gettfMatKhau2().getPassword().length == 0) {
+	                    register.gettfMatKhau2().setForeground(Color.GRAY);
+	                    register.gettfMatKhau2().setText("Nhập lại mật khẩu");
+	                    register.gettfMatKhau2().setEchoChar((char) 0); // Tắt chế độ ẩn mật khẩu
+	                }
+	            }
+        });
+      //xử lý sự kiện nhấn vào checkbox hiển thị mật khẩu: bật -> dấu * chuyển thành ký tự và ngược lại
+        register.getCbHienThiMatKhau().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (register.getCbHienThiMatKhau().isSelected()) {
+                    register.gettfMatKhau1().setEchoChar((char) 0); // Hiển thị mật khẩu
+                    register.gettfMatKhau2().setEchoChar((char) 0); // Hiển thị mật khẩu nhập lại
+                } else {
+                    register.gettfMatKhau1().setEchoChar('*'); // Ẩn mật khẩu
+                    register.gettfMatKhau2().setEchoChar('*'); // Ẩn mật khẩu nhập lại
                 }
             }
         });
 		
-		//dat placeholder "Nhập mật khẩu"
-				register.gettfMatKhau2().addFocusListener(new FocusListener() {
-		            public void focusGained(FocusEvent e) {
-		                if (register.gettfMatKhau2().getText().equals("Nhập mật khẩu")) {
-		                	register.gettfMatKhau2().setText("");
-		                	register.gettfMatKhau2().setForeground(Color.BLACK);
-		                }
-		            }
-
-		            public void focusLost(FocusEvent e) {
-		                if (register.gettfMatKhau2().getText().isEmpty()) {
-		                	register.gettfMatKhau2().setForeground(Color.GRAY);
-		                	register.gettfMatKhau2().setText("Nhập mật khẩu");
-		                }
-		            }
-		        });
-				
-				
 				//xử lý event nhấn vào nút đăng ký tài khoản
 		        register.getbtnDangKy().addActionListener(new ActionListener() {
 		            @Override
 		            public void actionPerformed(ActionEvent e) {
 		                String email = register.gettfEmail().getText();
-		                String matKhau1 = register.gettfMatKhau1().getText();
-		                String matKhau2 = register.gettfMatKhau2().getText();
+		                String matKhau1 = String.valueOf(register.gettfMatKhau1().getPassword());
+		                String matKhau2 = String.valueOf(register.gettfMatKhau2().getPassword());
 		                
 		                // Validate email
 		                if (!isValidEmail(email)) {
@@ -102,6 +121,13 @@ public class RegisterController {
 
 		                // Show success message
 		                JOptionPane.showMessageDialog(register.getContenPane(), "Đăng ký thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
+		            
+		                // Ẩn RegisterForm hiện tại
+		                register.setVisible(false);
+
+		                // Tạo và hiển thị LoginForm
+		                LoginForm loginForm = new LoginForm();
+		                loginForm.setVisible(true);
 		            }
 		        });	
 		        
@@ -119,6 +145,8 @@ public class RegisterController {
 		            	}
 		            }
 		        });
+		  
+
 	}
 	
 	// Email validation
@@ -133,5 +161,24 @@ public class RegisterController {
     	//xác thực tính hợp lệ của mật khẩu (ít nhất 1 chữ hoa, 1 ký tự đặc biệt, 1 số và dài ít nhất 8 ký tự)
         String passwordRegex = "(?=.*[A-Z])(?=.*[0-9])(?=.*[^_=!#$%&()*+,-.:/'?@]).{8,}";
         return password.matches(passwordRegex);
+    }
+    
+    public void hienThiMatKhau(boolean hienThi) {
+        if (hienThi) {
+        	register.gettfMatKhau1().setEchoChar((char) 0);
+            register.gettfMatKhau2().setEchoChar((char) 0);
+        } else {
+            if (new String(register.gettfMatKhau1().getPassword()).equals("Nhập mật khẩu")) {
+            	register.gettfMatKhau1().setEchoChar((char) 0);
+            } else {
+            	register.gettfMatKhau1().setEchoChar('*');
+            }
+
+            if (new String(register.gettfMatKhau2().getPassword()).equals("Nhập lại mật khẩu")) {
+            	register.gettfMatKhau2().setEchoChar((char) 0);
+            } else {
+            	register.gettfMatKhau2().setEchoChar('*');
+            }
+        }
     }
 }

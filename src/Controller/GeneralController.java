@@ -60,36 +60,6 @@ public class GeneralController {
 		    }
 		});
 		
-/*		//đổi màu khi di chuột, nếu nút chưa được chọn
-		generalForm.getBtnQuanLy().addMouseListener(new MouseAdapter() {
-		    @Override
-		    public void mouseEntered(MouseEvent e) {
-		        // Đổi màu khi di chuột vào nếu nút chưa được chọn
-		        if (!isButtonSelected) {
-		        	generalForm.getBtnQuanLy().setBackground(new Color(0, 150, 136));
-		        }
-		    }
-
-		    @Override
-		    public void mouseExited(MouseEvent e) {
-		        // Đổi màu về mặc định khi di chuột ra nếu nút chưa được chọn
-		        if (!isButtonSelected) {
-		        	generalForm.getBtnQuanLy().setBackground(new Color(61, 187, 164));
-		        }
-		    }
-		    public void mousePressed(MouseEvent e) {
-		        // Xử lý khi nút được nhấn
-
-		        if (selectedButton != null) {
-		            selectedButton.setBackground(new Color(61, 187, 164)); // Trả lại màu ban đầu cho nút trước đó
-		            isButtonSelected = false; // Đặt lại trạng thái cho nút trước đó
-		        }
-
-		        selectedButton = (JButton) e.getSource(); // Lưu nút hiện tại là nút được chọn
-		        selectedButton.setBackground(new Color(0, 150, 136)); // Đổi màu nút được chọn
-		        isButtonSelected = true; // Cập nhật trạng thái cho nút hiện tại
-		    }
-		}); */
 		
 //ẩn hiện menu bar
 		// Thêm ActionListener để hiển thị/ẩn plVachNgan2 khi nhấn vào btnNewButton_1
