@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import Controller.RegisterController;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -64,7 +67,7 @@ public class RegisterForm extends JFrame {
         tfEmail.setForeground(Color.GRAY);
         contentPane.add(tfEmail);
 
-        tfEmail.addFocusListener(new FocusListener() {
+/*        tfEmail.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 if (tfEmail.getText().equals("Nhập email")) {
@@ -81,7 +84,7 @@ public class RegisterForm extends JFrame {
                 }
             }
         });
-
+*/
         tfMatKhau1 = new JTextField();
         tfMatKhau1.setColumns(10);
         tfMatKhau1.setBounds(47, 149, 200, 30);
@@ -89,7 +92,7 @@ public class RegisterForm extends JFrame {
         tfMatKhau1.setForeground(Color.GRAY);
         contentPane.add(tfMatKhau1);
 
-        tfMatKhau1.addFocusListener(new FocusListener() {
+/*        tfMatKhau1.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 if (tfMatKhau1.getText().equals("Nhập mật khẩu")) {
                     tfMatKhau1.setText("");
@@ -104,7 +107,7 @@ public class RegisterForm extends JFrame {
                 }
             }
         });
-
+*/
         tfMatKhau2 = new JTextField();
         tfMatKhau2.setColumns(10);
         tfMatKhau2.setBounds(47, 202, 200, 30);
@@ -112,7 +115,7 @@ public class RegisterForm extends JFrame {
         tfMatKhau2.setForeground(Color.GRAY);
         contentPane.add(tfMatKhau2);
 
-        tfMatKhau2.addFocusListener(new FocusListener() {
+/*        tfMatKhau2.addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
                 if (tfMatKhau2.getText().equals("Nhập lại mật khẩu")) {
                     tfMatKhau2.setText("");
@@ -127,7 +130,7 @@ public class RegisterForm extends JFrame {
                 }
             }
         });
-
+*/
         btnDangKy = new JButton("Đăng ký");
         btnDangKy.setForeground(Color.WHITE);
         btnDangKy.setFont(new Font("Times New Roman", Font.PLAIN, 11));
@@ -135,7 +138,7 @@ public class RegisterForm extends JFrame {
         btnDangKy.setBounds(96, 257, 89, 23);
         contentPane.add(btnDangKy);
 
-        btnDangKy.addActionListener(new ActionListener() {
+/*        btnDangKy.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
@@ -164,7 +167,7 @@ public class RegisterForm extends JFrame {
                 JOptionPane.showMessageDialog(RegisterForm.this, "Đăng ký thành công!", "Thành công", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-
+*/
         lblBnC = new JLabel("Bạn đã có tài khoản?");
         lblBnC.setFont(new Font("Times New Roman", Font.PLAIN, 11));
         lblBnC.setBounds(70, 337, 115, 14);
@@ -176,7 +179,7 @@ public class RegisterForm extends JFrame {
         lblDangNhap.setBounds(172, 337, 49, 14);
         contentPane.add(lblDangNhap);
         
-        lblDangNhap.addMouseListener(new MouseAdapter() {
+/*        lblDangNhap.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	if (SwingUtilities.isLeftMouseButton(e)) {   // Kiểm tra nút chuột trái  
@@ -189,19 +192,27 @@ public class RegisterForm extends JFrame {
             	}
             }
         });
+*/
+        RegisterController controller = new RegisterController(this);
     }
 
-    // Email validation
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(email).matches();
+    
+    public JTextField gettfEmail() {
+    	return this.tfEmail;
     }
-
-    // Password validation
-    private boolean isValidPassword(String password) {
-    	//xác thực tính hợp lệ của mật khẩu (ít nhất 1 chữ hoa, 1 ký tự đặc biệt, 1 số và dài ít nhất 8 ký tự)
-        String passwordRegex = "(?=.*[A-Z])(?=.*[0-9])(?=.*[^_=!#$%&()*+,-.:/'?@]).{8,}";
-        return password.matches(passwordRegex);
+    public JTextField gettfMatKhau1() {
+    	return this.tfMatKhau1;
+    }
+    public JTextField gettfMatKhau2() {
+    	return this.tfMatKhau2;
+    }
+    public JButton getbtnDangKy() {
+    	return this.btnDangKy;
+    }
+    public JLabel getlblDangNhap() {
+    	return this.lblDangNhap;
+    }
+    public JPanel getContenPane() {
+    	return this.contentPane;
     }
 }
